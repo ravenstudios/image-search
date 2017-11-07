@@ -10,9 +10,17 @@ app.set('view engine', 'jade');
 
 
 app.get("/api/imagesearch/:searchTerm", function(req, res){
-  var offset = req.query;
+  var offset = req.query.offset;
+  var query = req.params.searchTerm;
+  imageSearch(query, offset, function(result){
+    saveQuery(query, function(result){
+
+    })
+    res.send(result);
+  });
+
   //res.send("image search " + req.params.query + " " + req.query);
-  res.render("index")
+  //res.render("index")
 })
 
 app.get("/api/latest/imagesearch", function(req, res){
